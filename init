@@ -10,7 +10,7 @@
 
 case "$1" in
 start)
-   /opt/KimpexTranfer/service &
+   /opt/combine-excel/service &
    echo $!>/var/run/service.pid
    ;;
 stop)
