@@ -5,7 +5,7 @@ PHP application to combine multiple Excel files into one
  - combine.php : a PHP script that reads an IMAP mailbox and combine all XLS(x) and send them back combined.
  - service : a BASH script that executes combine.php in a loop.
  - init : a SHELL script to be placed in /etc/init.d/ to launch the service script in the background.
- - settings.json : A JSON file that can be created to insert all scripts settings
+ - settings.json : A JSON file that stores all scripts settings
 
 ## combine.php
 ### Requirements
@@ -16,6 +16,7 @@ PHP application to combine multiple Excel files into one
  - php-imap
  - php-imagick
  - ghostscript
+
 ### Execute
 ```BASH
 php combine.php
@@ -37,6 +38,11 @@ sudo systemctl start combine-excel
 ```
 
 ## settings.json
+### Create settings
+To create the file simply use your favorite editor and copy/paste the example.
+```BASH
+nano settings.json
+```
 ### Example
 ```JSON
 {
