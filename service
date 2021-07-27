@@ -2,7 +2,9 @@
 
 while(true);do
   php /opt/combine-excel/combine.php
-  rm -r /opt/combine-excel/tmp
+  if [ -f "/opt/combine-excel/tmp" ]; then
+    rm -r /opt/combine-excel/tmp
+  fi
 done
 
 exit 0
