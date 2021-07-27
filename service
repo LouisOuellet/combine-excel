@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while(true);do
+  php /opt/combine-excel/combine.php
+  rm -r /opt/combine-excel/tmp
+done
+
+exit 0
