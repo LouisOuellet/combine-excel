@@ -15,17 +15,19 @@ class apiXLSX{
 
 		// Load spreadsheets files
 		foreach($files as $key => $file){
-			echo "Processing ".$file."<br>\n";
-			// Read spreadsheets
-			$objPHPExcel[$key]["obj"] = PHPExcel_IOFactory::load("$file");
-			$objPHPExcel[$key]["worksheet"] = $objPHPExcel[$key]["obj"]->setActiveSheetIndex(0);
-			$objPHPExcel[$key]["endRow"] = $objPHPExcel[$key]["worksheet"]->getHighestRow();
-			$objPHPExcel[$key]["endColumn"] = $objPHPExcel[$key]["worksheet"]->getHighestColumn();
-			$objPHPExcel[$key]["endData"] = $objPHPExcel[$key]["endColumn"].$objPHPExcel[$key]["endRow"];
-			$objPHPExcel[$key]["data"] = $objPHPExcel[$key]["worksheet"]->rangeToArray('A2:' . $objPHPExcel[$key]["endData"]);
-			// Append Data
-			$StartRow = $objXLSX["worksheet"]->getHighestRow() + 1;
-			$objXLSX["worksheet"]->fromArray($objPHPExcel[$key]["data"], null, 'A' . $StartRow);
+			if(strpos(strtolower($file), '.xls') !== false || strpos(strtolower($file), '.xlsx') !== false){
+				echo "Processing ".$file."<br>\n";
+				// Read spreadsheets
+				$objPHPExcel[$key]["obj"] = PHPExcel_IOFactory::load("$file");
+				$objPHPExcel[$key]["worksheet"] = $objPHPExcel[$key]["obj"]->setActiveSheetIndex(0);
+				$objPHPExcel[$key]["endRow"] = $objPHPExcel[$key]["worksheet"]->getHighestRow();
+				$objPHPExcel[$key]["endColumn"] = $objPHPExcel[$key]["worksheet"]->getHighestColumn();
+				$objPHPExcel[$key]["endData"] = $objPHPExcel[$key]["endColumn"].$objPHPExcel[$key]["endRow"];
+				$objPHPExcel[$key]["data"] = $objPHPExcel[$key]["worksheet"]->rangeToArray('A2:' . $objPHPExcel[$key]["endData"]);
+				// Append Data
+				$StartRow = $objXLSX["worksheet"]->getHighestRow() + 1;
+				$objXLSX["worksheet"]->fromArray($objPHPExcel[$key]["data"], null, 'A' . $StartRow);
+			}
 		}
 
 		// Save the spreadsheet with the merged data
