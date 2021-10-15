@@ -5,12 +5,14 @@
 # Required-Stop:
 # Default-Start:     2 3 4 5
 # Default-Stop:
-# Short-Description: Merging XLSX documents
+# Short-Description: Merging PDF documents
 ### END INIT INFO
+
+sourceDir=$(dirname $(readlink -f $0))
 
 case "$1" in
 start)
-   /opt/combine-excel/service &
+   ${sourceDir}/service &
    echo $!>/var/run/service.pid
    ;;
 stop)
