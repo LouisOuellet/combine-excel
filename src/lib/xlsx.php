@@ -16,7 +16,7 @@ class apiXLSX{
 		// Load spreadsheets files
 		foreach($files as $key => $file){
 			if(strpos(strtolower($file), '.xls') !== false || strpos(strtolower($file), '.xlsx') !== false){
-				echo "Processing ".$file."<br>\n";
+				echo "Processing ".$file."\n";
 				// Read spreadsheets
 				$objPHPExcel[$key]["obj"] = PHPExcel_IOFactory::load("$file");
 				$objPHPExcel[$key]["worksheet"] = $objPHPExcel[$key]["obj"]->setActiveSheetIndex(0);
